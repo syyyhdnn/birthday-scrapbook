@@ -95,6 +95,27 @@
       align-items: center;
       width: 100%;
       max-width: 500px;
+      position: relative;
+    }
+
+    /* Control Musik Floating */
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .book {
@@ -209,6 +230,13 @@
 </head>
 <body>
 
+  <!-- Pemutar Audio Pas dengan Nama Lagu Kamu -->
+  <audio id="bg-music" loop>
+    <source src="Sore_-_Karolina_(mp3.pm).mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="music-btn" onclick="toggleMusic()" style="display:none;">🎵</button>
+
   <!-- SKRIN TERKUNCI -->
   <div id="lock-screen">
     <h1>🎁 Ada Hadiah Spesial!</h1>
@@ -231,8 +259,8 @@
       <!-- Halaman 1 -->
       <div class="page active" id="page-1">
         <h2>Selamat Ulang Tahun, Ramadhani! 🎉</h2>
-        <img src="foto1.jpg" alt="Foto 1">
-        <p>Selamat ulang tahun yang ke-20 sayangku! Semoga hari ini penuh dengan kebahagiaan dan tawa. Tiup lilinnya dulu yuk!</p>
+        <img src="WhatsApp Image 2026-10-12 at 16.31.04.jpeg" alt="Foto 1">
+        <p>Selamat ulang tahun yang ke-20 untuk kamu sayang! Semoga hari ini penuh dengan kebahagiaan dan tawa. Tiup lilinnya dulu yuk!</p>
         
         <div class="cake-container" onclick="blowCandle()">
           <div class="flame" id="flame"></div>
@@ -244,15 +272,15 @@
       <!-- Halaman 2 -->
       <div class="page" id="page-2">
         <h2>Kenangan Indah ✨</h2>
-        <img src="foto2.jpg" alt="Foto 2">
-        <p>Terima kasih sudah selalu menemani dan bikin hari-hari jadi lebih berwarna. Setiap momen sama kamu itu berharga banget.</p>
+        <img src="WhatsApp Image 2026-10-12 at 16.31.42.jpeg" alt="Foto 2">
+        <p>Terima kasih sudah selalu menemani dan bikin hari-hari aku jadi lebih berwarna. Setiap momen sama kamu itu berharga banget.</p>
       </div>
 
       <!-- Halaman 3 -->
       <div class="page" id="page-3">
         <h2>Harapan & Doa 🤍</h2>
-        <img src="foto3.jpg" alt="Foto 3">
-        <p>Semoga di usia 20 tahun ini, semua impian kamu tercapai, makin sukses, selalu sehat, dan bahagia terus. I love you! ❤️</p>
+        <img src="WhatsApp Image 2026-10-12 at 16.33.10.jpeg" alt="Foto 3">
+        <p>Semoga di usia 20 tahun ini, semua impianmu tercapai, makin sukses, selalu sehat, dan bahagia terus. I love you! ❤️</p>
       </div>
 
     </div>
@@ -295,6 +323,36 @@
     function unlockScrapbook() {
       document.getElementById('lock-screen').style.display = 'none';
       document.getElementById('scrapbook-container').style.display = 'flex';
+      document.getElementById('music-btn').style.display = 'flex';
+      
+      // Putar Musik
+      playMusic();
+    }
+
+    // Musik Toggle
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    let isPlaying = false;
+
+    function playMusic() {
+      music.play().then(() => {
+        isPlaying = true;
+        musicBtn.innerText = '🎵';
+      }).catch(err => {
+        console.log("Autoplay dicegah browser, klik tombol musik.");
+      });
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.innerText = '🔇';
+        isPlaying = false;
+      } else {
+        music.play();
+        musicBtn.innerText = '🎵';
+        isPlaying = true;
+      }
     }
 
     // Logika Flipbook Halaman
