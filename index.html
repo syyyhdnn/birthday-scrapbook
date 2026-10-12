@@ -49,7 +49,7 @@
       100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* --- SKRIN TERKUNCI (COUNTDOWN) --- */
+    /* --- SKRIN TERKUNCI & KUIS --- */
     #lock-screen, #quiz-screen {
       background: rgba(255, 255, 255, 0.95);
       padding: 30px;
@@ -224,7 +224,7 @@
     @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
     .candle { width: 10px; height: 35px; background: #8e24aa; margin: 0 auto; border-radius: 3px; }
 
-    /* Popup Surat Rahasia */
+    /* POPUP SURAT RAHASIA */
     #letter-modal {
       display: none;
       position: fixed;
@@ -233,22 +233,45 @@
       z-index: 200;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 15px;
     }
     .letter-content {
       background: #fff0f5;
-      padding: 25px;
+      padding: 22px 20px;
       border-radius: 15px;
-      max-width: 400px;
-      text-align: center;
+      max-width: 440px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      text-align: left;
       border: 2px dashed #d81b60;
-      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .letter-content h3 {
+      color: #d81b60;
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    .letter-body p {
+      font-size: 12.5px;
+      color: #4a4a4a;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+    .letter-footer {
+      margin-top: 15px;
+      font-style: italic;
+      color: #ad1457;
+      font-size: 12px;
+      text-align: right;
     }
   </style>
 </head>
 <body>
 
-  <!-- Pemutar Audio Pas dengan Nama Lagu Kamu -->
+  <!-- Pemutar Audio -->
   <audio id="bg-music" loop>
     <source src="Sore_-_Karolina_(mp3.pm).mp3" type="audio/mpeg">
   </audio>
@@ -274,7 +297,7 @@
   <div id="quiz-screen" style="display:none;">
     <h1 id="quiz-title">Kuis Singkat 💌</h1>
     <p id="quiz-question">Siapa orang paling manis & cantik yang lagi ulang tahun hari ini?</p>
-    <button class="quiz-opt-btn" onclick="answerQuiz(true)">Ramadhani Putri alias Pacar Akuuu ❤️</button>
+    <button class="quiz-opt-btn" onclick="answerQuiz(true)">Ramadhani Putri alias Pacar Aku ❤️</button>
     <button class="quiz-opt-btn" onclick="answerQuiz(false)">Bukan aku 😜</button>
   </div>
 
@@ -284,9 +307,9 @@
       
       <!-- Halaman 1 -->
       <div class="page active" id="page-1">
-        <h2>Selamat Ulang Tahun Bebeyyy! 🎉</h2>
-        <img src="WhatsApp Image 2026-10-12 at 16.31.04.jpeg" alt="Foto 1">
-        <p>Selamat ulang tahun yang ke-20 sayangkuuu! Semoga hari ini penuh kebahagiaan. Tiup lilinnya dulu yuk!</p>
+        <h2>Selamat Ulang Tahun! 🎉</h2>
+        <img src="WhatsApp Image 2026-10-12 at 17.23.29.jpeg" alt="Foto 1">
+        <p>Selamat ulang tahun yang ke-20 sayangku cintaku! Semoga hari ini dan seterusnya penuh kebahagiaan. Tiup lilinnya dulu yuk!</p>
         
         <div class="cake-container" onclick="blowCandle()">
           <div class="flame" id="flame"></div>
@@ -298,14 +321,14 @@
       <!-- Halaman 2 -->
       <div class="page" id="page-2">
         <h2>Kenangan Indah ✨</h2>
-        <img src="WhatsApp Image 2026-10-12 at 16.31.42.jpeg" alt="Foto 2">
-        <p>Terima kasih sudah selalu menemani dan bikin hari-hari aku jadi lebih berwarna. Setiap momen sama kamu itu berharga banget, love u sayanggg.</p>
+        <img src="WhatsApp Image 2026-10-12 at 17.23.30 (1).jpeg" alt="Foto 2">
+        <p>Terima kasih sudah selalu nemenin aku dan bikin hari-hari aku jadi lebih berwarna. Setiap momen sama kamu itu berharga banget.</p>
       </div>
 
       <!-- Halaman 3 (Harapan & Doa Panjang) -->
       <div class="page" id="page-3">
         <h2>Harapan & Doa 🤍</h2>
-        <img src="WhatsApp Image 2026-10-12 at 16.33.10.jpeg" alt="Foto 3">
+        <img src="WhatsApp Image 2026-10-12 at 17.23.30 (2).jpeg" alt="Foto 3">
         
         <div class="wish-text-container">
           <p>Di umur kamu yang sekarang, aku berdoa semoga semua hal baik selalu datang ke hidup kamu. Semoga kamu selalu dikasih kesehatan, kebahagiaan, hati yang tenang, dan kekuatan buat ngelewatin setiap hal yang mungkin nggak selalu mudah buat kamu. Semoga semua yang kamu usahain selama ini bisa membuahkan hasil, semua mimpi yang kamu punya satu per satu bisa terwujud, dan kamu selalu dikelilingi sama orang-orang yang tulus sayang sama kamu.</p>
@@ -325,7 +348,7 @@
       <!-- Halaman 4 (Pesan Rahasia) -->
       <div class="page" id="page-4">
         <h2>Surat Rahasia Untukmu ✉️</h2>
-        <img src="WhatsApp Image 2026-10-12 at 16.31.04.jpeg" alt="Foto 4">
+        <img src="WhatsApp Image 2026-10-12 at 17.23.30 (3).jpeg" alt="Foto 4">
         <p>Ada surat khusus yang aku tulis buat kamu. Klik tombol di bawah buat baca ya!</p>
         <button class="btn" onclick="openLetter()">💌 Buka Surat Rahasia</button>
       </div>
@@ -343,11 +366,42 @@
   <!-- MODAL SURAT RAHASIA -->
   <div id="letter-modal">
     <div class="letter-content">
-      <h3 style="color:#d81b60; margin-bottom:10px;">Dear Sayangku ❤️</h3>
-      <p style="font-size:13px; color:#444; line-height:1.6; text-align:left;">
-        Selamat ulang tahun ke-20 yaa sayang! Makasih udah hadir dan selalu kasih kehangatan di setiap hariku. Aku bakal selalu ada buat dukung kamu dalam kondisi apa pun. Semoga hubungan kita makin langgeng dan penuh kebahagiaan!
-      </p>
-      <button class="btn" style="margin-top:15px;" onclick="closeLetter()">Tutup Surat 💕</button>
+      <h3>a little secret, just for you ♡</h3>
+      
+      <div class="letter-body">
+        <p>hai, sayang.</p>
+        
+        <p>kalau kamu lagi baca surat ini, berarti ada satu hal yang pengen banget aku sampaikan ke kamu, sesuatu yang mungkin nggak selalu bisa aku ungkapin secara langsung.</p>
+        
+        <p>pertama-tama, makasih ya udah hadir di hidup aku. makasih karena tanpa kamu sadari, kamu udah jadi salah satu alasan kenapa hari-hari aku terasa lebih berwarna. makasih buat setiap cerita, tawa, perhatian, dan hal-hal kecil yang mungkin buat kamu biasa aja, tapi berarti banyak buat aku.</p>
+        
+        <p>aku tahu aku bukan pasangan yang sempurna. aku masih punya banyak kekurangan, masih sering salah dalam bersikap, dan masih harus banyak belajar buat jadi pasangan yang lebih baik. aku juga sadar ada hal-hal yang pernah aku lakuin yang bikin kamu kecewa. untuk itu, aku benar-benar minta maaf, ya, sayang. aku nggak bisa mengubah apa yang udah terjadi, tapi aku pengen terus belajar supaya ke depannya aku bisa memperlakukan kamu dengan lebih baik.</p>
+        
+        <p>kalau suatu hari kamu ngerasa capek, aku harap kamu ingat kalau kamu nggak harus selalu terlihat kuat. kamu boleh istirahat, boleh cerita, boleh sedih, dan boleh jadi diri kamu sendiri. aku berharap dunia selalu punya cara buat memperlakukan kamu dengan baik, karena kamu juga pantas mendapatkan kebahagiaan dan ketenangan.</p>
+        
+        <p>aku tahu hubungan kita nggak selalu mudah, apalagi dengan jarak yang kadang bikin kita cuma bisa saling menatap lewat layar. ada saatnya aku kangen kamu, pengen cerita langsung, pengen ketemu, atau sekadar menghabiskan waktu bareng tanpa harus mikirin jarak. tapi di tengah semua itu, aku berharap kita tetap bisa saling memahami dan terus belajar menjaga hubungan ini.</p>
+        
+        <p>aku nggak bisa menjanjikan kalau ke depannya semuanya akan selalu berjalan sesuai keinginan kita. tapi aku ingin terus berusaha, bukan cuma lewat kata-kata manis, melainkan juga lewat sikap, waktu, perhatian, dan cara aku memperlakukan kamu setiap harinya.</p>
+        
+        <p>di hari ulang tahun kamu ini, aku nggak cuma berharap kamu bahagia hari ini. aku berharap kamu bahagia di banyak hari setelahnya, berhasil meraih mimpi-mimpi kamu, bangga sama diri kamu sendiri, dan selalu punya alasan buat tersenyum.</p>
+        
+        <p>dan kalau nanti kamu melihat kembali surat ini di waktu yang berbeda, aku harap kamu bisa mengingat bahwa di hari ulang tahunmu ini, ada seseorang yang benar-benar berharap hal-hal baik datang ke hidup kamu.</p>
+        
+        <p>happy birthday, my favorite person.</p>
+        
+        <p>semoga umur baru ini membawa banyak kebahagiaan, kesempatan, dan cerita indah buat kamu. terima kasih udah menjadi bagian dari hidup aku. semoga kita masih punya banyak kesempatan buat tumbuh bersama, belajar dari kesalahan, dan menciptakan kenangan yang suatu hari nanti bisa kita ceritakan sambil tersenyum.</p>
+        
+        <p>i hope life will always be kind to you, and i hope you never forget how much you deserve to be happy.</p>
+        
+        <div class="letter-footer">
+          with love,<br>
+          seseorang yang masih terus belajar menjadi lebih baik buat kamu ❤️
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn" onclick="closeLetter()">Tutup Surat 💕</button>
+      </div>
     </div>
   </div>
 
