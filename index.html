@@ -28,65 +28,85 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* --- ANIMASI HATI BERTERBANGAN --- */
+    .heart-particle {
+      position: fixed;
+      color: #f48fb1;
+      font-size: 20px;
+      user-select: none;
+      pointer-events: none;
+      animation: floatUp 4s linear infinite;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
     /* --- SKRIN TERKUNCI (COUNTDOWN) --- */
-    #lock-screen {
+    #lock-screen, #quiz-screen {
       background: rgba(255, 255, 255, 0.95);
-      padding: 40px 30px;
+      padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       text-align: center;
       max-width: 450px;
       width: 100%;
+      z-index: 10;
     }
 
-    #lock-screen h1 {
+    #lock-screen h1, #quiz-screen h1 {
       color: #d81b60;
       margin-bottom: 15px;
-      font-size: 24px;
+      font-size: 22px;
     }
 
-    #lock-screen p {
+    #lock-screen p, #quiz-screen p {
       margin-bottom: 20px;
       color: #666;
+      font-size: 14px;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       margin-top: 20px;
     }
 
     .time-box {
       background: #f8bbd0;
       color: #880e4f;
-      padding: 10px 15px;
+      padding: 10px;
       border-radius: 10px;
       font-weight: bold;
-      min-width: 60px;
+      min-width: 55px;
     }
 
-    .time-box span {
-      display: block;
-      font-size: 20px;
-    }
+    .time-box span { display: block; font-size: 18px; }
+    .time-box label { font-size: 10px; text-transform: uppercase; }
 
-    .time-box label {
-      font-size: 11px;
-      text-transform: uppercase;
-    }
-
-    .bypass-btn {
-      margin-top: 25px;
-      background: none;
+    .bypass-btn, .quiz-opt-btn {
+      margin-top: 15px;
+      background: #d81b60;
+      color: white;
       border: none;
-      color: #ad1457;
-      text-decoration: underline;
+      padding: 10px 18px;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.3s;
+      width: 100%;
     }
+
+    .quiz-opt-btn:hover { background: #ad1457; }
 
     /* --- KONTEN SCRAPBOOK (FLIPBOOK) --- */
     #scrapbook-container {
@@ -94,11 +114,10 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 500px;
-      position: relative;
+      max-width: 480px;
+      z-index: 10;
     }
 
-    /* Control Musik Floating */
     .music-btn {
       position: fixed;
       top: 20px;
@@ -120,21 +139,19 @@
 
     .book {
       width: 100%;
-      height: 550px;
+      height: 520px;
       position: relative;
-      perspective: 1000px;
     }
 
     .page {
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       background: white;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      padding: 30px;
+      padding: 25px;
       display: none;
       flex-direction: column;
       align-items: center;
@@ -144,87 +161,88 @@
       outline: 2px dashed #f48fb1;
     }
 
-    .page.active {
-      display: flex;
-    }
+    .page.active { display: flex; }
 
     .page img {
       width: 100%;
-      max-height: 250px;
+      max-height: 180px;
       object-fit: cover;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
 
-    .page h2 {
-      color: #d81b60;
-      font-size: 22px;
+    .page h2 { color: #d81b60; font-size: 20px; flex-shrink: 0; }
+    .page p { font-size: 13px; line-height: 1.5; color: #555; }
+
+    /* Scrollable Container Khusus Halaman Doa Panjang */
+    .wish-text-container {
+      overflow-y: auto;
+      max-height: 250px;
+      padding: 10px;
+      text-align: left;
+      background: #fff5f8;
+      border-radius: 10px;
+      border: 1px solid #f8bbd0;
+      margin: 10px 0;
     }
 
-    .page p {
-      font-size: 14px;
+    .wish-text-container p {
+      margin-bottom: 12px;
+      font-size: 12.5px;
       line-height: 1.6;
-      color: #555;
+      color: #4a4a4a;
     }
 
     .nav-buttons {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .btn {
       background: #d81b60;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 8px 16px;
       border-radius: 20px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
     }
 
-    .btn:hover {
-      background: #ad1457;
-    }
-
-    .btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
+    .btn:disabled { background: #ccc; cursor: not-allowed; }
 
     /* Lilin Interaktif */
-    .cake-container {
-      margin: 15px 0;
-      cursor: pointer;
-    }
-
+    .cake-container { margin: 10px 0; cursor: pointer; }
     .flame {
-      width: 20px;
-      height: 30px;
-      background: orange;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      margin: 0 auto;
+      width: 18px; height: 26px; background: orange;
+      border-radius: 50%; margin: 0 auto;
       animation: flicker 0.5s infinite alternate;
       box-shadow: 0 0 10px yellow;
     }
+    .flame.off { display: none; }
+    @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+    .candle { width: 10px; height: 35px; background: #8e24aa; margin: 0 auto; border-radius: 3px; }
 
-    .flame.off {
+    /* Popup Surat Rahasia */
+    #letter-modal {
       display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-
-    @keyframes flicker {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.1); }
-    }
-
-    .candle {
-      width: 12px;
-      height: 40px;
-      background: #8e24aa;
-      margin: 0 auto;
-      border-radius: 3px;
+    .letter-content {
+      background: #fff0f5;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 400px;
+      text-align: center;
+      border: 2px dashed #d81b60;
+      position: relative;
     }
   </style>
 </head>
@@ -240,7 +258,7 @@
   <!-- SKRIN TERKUNCI -->
   <div id="lock-screen">
     <h1>🎁 Ada Hadiah Spesial!</h1>
-    <p>Website ini dikunci dan baru bisa dibuka pada tanggal <strong>17 Oktober 2026</strong>. Sabar ya! ❤️</p>
+    <p>Website ini dikunci dan baru bisa dibuka pada tanggal <strong>17 Oktober 2026</strong>. Sabar ya sayanggg! ❤️</p>
     
     <div class="countdown">
       <div class="time-box"><span id="days">0</span><label>Hari</label></div>
@@ -249,7 +267,15 @@
       <div class="time-box"><span id="seconds">0</span><label>Detik</label></div>
     </div>
 
-    <button class="bypass-btn" onclick="unlockScrapbook()">🔑 Mode Testing (Buka Kunci)</button>
+    <button class="bypass-btn" onclick="startQuiz()">🔑 Mode Testing (Buka Kunci)</button>
+  </div>
+
+  <!-- KUIS MINI -->
+  <div id="quiz-screen" style="display:none;">
+    <h1 id="quiz-title">Kuis Singkat 💌</h1>
+    <p id="quiz-question">Siapa orang paling manis & cantik yang lagi ulang tahun hari ini?</p>
+    <button class="quiz-opt-btn" onclick="answerQuiz(true)">Ramadhani Putri alias Pacar Akuuu ❤️</button>
+    <button class="quiz-opt-btn" onclick="answerQuiz(false)">Bukan aku 😜</button>
   </div>
 
   <!-- KONTEN FLIPBOOK -->
@@ -258,9 +284,9 @@
       
       <!-- Halaman 1 -->
       <div class="page active" id="page-1">
-        <h2>Selamat Ulang Tahun, Ramadhani! 🎉</h2>
+        <h2>Selamat Ulang Tahun Bebeyyy! 🎉</h2>
         <img src="WhatsApp Image 2026-10-12 at 16.31.04.jpeg" alt="Foto 1">
-        <p>Selamat ulang tahun yang ke-20 untuk kamu sayang! Semoga hari ini penuh dengan kebahagiaan dan tawa. Tiup lilinnya dulu yuk!</p>
+        <p>Selamat ulang tahun yang ke-20 sayangkuuu! Semoga hari ini penuh kebahagiaan. Tiup lilinnya dulu yuk!</p>
         
         <div class="cake-container" onclick="blowCandle()">
           <div class="flame" id="flame"></div>
@@ -273,14 +299,35 @@
       <div class="page" id="page-2">
         <h2>Kenangan Indah ✨</h2>
         <img src="WhatsApp Image 2026-10-12 at 16.31.42.jpeg" alt="Foto 2">
-        <p>Terima kasih sudah selalu menemani dan bikin hari-hari aku jadi lebih berwarna. Setiap momen sama kamu itu berharga banget.</p>
+        <p>Terima kasih sudah selalu menemani dan bikin hari-hari aku jadi lebih berwarna. Setiap momen sama kamu itu berharga banget, love u sayanggg.</p>
       </div>
 
-      <!-- Halaman 3 -->
+      <!-- Halaman 3 (Harapan & Doa Panjang) -->
       <div class="page" id="page-3">
         <h2>Harapan & Doa 🤍</h2>
         <img src="WhatsApp Image 2026-10-12 at 16.33.10.jpeg" alt="Foto 3">
-        <p>Semoga di usia 20 tahun ini, semua impianmu tercapai, makin sukses, selalu sehat, dan bahagia terus. I love you! ❤️</p>
+        
+        <div class="wish-text-container">
+          <p>Di umur kamu yang sekarang, aku berdoa semoga semua hal baik selalu datang ke hidup kamu. Semoga kamu selalu dikasih kesehatan, kebahagiaan, hati yang tenang, dan kekuatan buat ngelewatin setiap hal yang mungkin nggak selalu mudah buat kamu. Semoga semua yang kamu usahain selama ini bisa membuahkan hasil, semua mimpi yang kamu punya satu per satu bisa terwujud, dan kamu selalu dikelilingi sama orang-orang yang tulus sayang sama kamu.</p>
+          
+          <p>Aku juga berharap kamu bisa terus tumbuh jadi diri kamu sendiri, bisa bangga sama setiap proses yang udah kamu lewatin, dan nggak terlalu keras sama diri kamu sendiri ketika keadaan nggak berjalan sesuai keinginan kamu. Kalau suatu hari kamu capek, semoga kamu selalu punya alasan buat istirahat sebentar, nenangin diri, dan kembali melangkah dengan hati yang lebih kuat.</p>
+          
+          <p>Untuk hubungan kita, aku berharap kita bisa terus belajar jadi lebih baik buat satu sama lain. Semoga kita bisa lebih saling memahami, lebih sabar, lebih terbuka, dan bisa menghadapi masalah tanpa harus saling menyakiti. Aku tahu kita nggak selalu sempurna dan masih banyak hal yang perlu kita pelajari, tapi aku berharap kita selalu punya kemauan buat memperbaiki diri dan menjaga apa yang udah kita bangun bersama.</p>
+          
+          <p>Aku juga berdoa semoga jarak yang sekarang ada di antara kita nggak mengurangi rasa sayang dan usaha kita buat satu sama lain. Semoga selalu ada waktu buat kita berbagi cerita, ketawa bareng, saling mendengarkan, dan menciptakan banyak kenangan baik meskipun kita belum bisa selalu berada di tempat yang sama.</p>
+          
+          <p>Dan yang paling aku harapin, semoga kamu selalu punya banyak alasan buat bahagia, bukan cuma hari ini, tapi juga di hari-hari berikutnya. Semoga hidup kamu dipenuhi hal-hal yang bikin kamu bersyukur, semoga langkah kamu selalu dimudahkan, dan semoga apa pun yang sedang kamu perjuangkan membawa kamu ke tempat yang selama ini kamu impikan.</p>
+          
+          <p>Happy birthday, sayang. Semoga di umur yang baru ini, kamu bisa menemukan lebih banyak kebahagiaan, ketenangan, dan hal-hal baik yang pantas kamu dapatkan. Terima kasih udah hadir di hidup aku dan jadi bagian dari cerita aku sampai hari ini. Aku berharap kamu selalu bahagia, bisa meraih semua yang kamu impikan, dan semoga aku masih punya kesempatan buat menemani kamu melewati banyak ulang tahun berikutnya. ❤️</p>
+        </div>
+      </div>
+
+      <!-- Halaman 4 (Pesan Rahasia) -->
+      <div class="page" id="page-4">
+        <h2>Surat Rahasia Untukmu ✉️</h2>
+        <img src="WhatsApp Image 2026-10-12 at 16.31.04.jpeg" alt="Foto 4">
+        <p>Ada surat khusus yang aku tulis buat kamu. Klik tombol di bawah buat baca ya!</p>
+        <button class="btn" onclick="openLetter()">💌 Buka Surat Rahasia</button>
       </div>
 
     </div>
@@ -288,12 +335,35 @@
     <!-- Tombol Navigasi Halaman -->
     <div class="nav-buttons">
       <button class="btn" id="prev-btn" onclick="changePage(-1)" disabled>← Sebelum</button>
-      <span id="page-indicator" style="align-self: center; font-weight: bold; color: #d81b60;">1 / 3</span>
+      <span id="page-indicator" style="align-self: center; font-weight: bold; color: #d81b60;">1 / 4</span>
       <button class="btn" id="next-btn" onclick="changePage(1)">Lanjut →</button>
     </div>
   </div>
 
+  <!-- MODAL SURAT RAHASIA -->
+  <div id="letter-modal">
+    <div class="letter-content">
+      <h3 style="color:#d81b60; margin-bottom:10px;">Dear Sayangku ❤️</h3>
+      <p style="font-size:13px; color:#444; line-height:1.6; text-align:left;">
+        Selamat ulang tahun ke-20 yaa sayang! Makasih udah hadir dan selalu kasih kehangatan di setiap hariku. Aku bakal selalu ada buat dukung kamu dalam kondisi apa pun. Semoga hubungan kita makin langgeng dan penuh kebahagiaan!
+      </p>
+      <button class="btn" style="margin-top:15px;" onclick="closeLetter()">Tutup Surat 💕</button>
+    </div>
+  </div>
+
   <script>
+    // Effect Hati Berterbangan
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-particle');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+
     // Tanggal Buka Kunci: 17 Oktober 2026
     const targetDate = new Date('October 17, 2026 00:00:00').getTime();
 
@@ -302,30 +372,36 @@
       const difference = targetDate - now;
 
       if (difference <= 0) {
-        unlockScrapbook();
+        startQuiz();
         return;
       }
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
+      document.getElementById('days').innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('minutes').innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('seconds').innerText = Math.floor((difference % (1000 * 60)) / 1000);
     }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    function unlockScrapbook() {
+    // Kuis Logic
+    function startQuiz() {
       document.getElementById('lock-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+    }
+
+    function answerQuiz(isCorrect) {
+      if(isCorrect) {
+        unlockScrapbook();
+      } else {
+        alert("Tetot! Jawaban salah 😜 Coba pilih jawaban yang bener!");
+      }
+    }
+
+    function unlockScrapbook() {
+      document.getElementById('quiz-screen').style.display = 'none';
       document.getElementById('scrapbook-container').style.display = 'flex';
       document.getElementById('music-btn').style.display = 'flex';
-      
-      // Putar Musik
       playMusic();
     }
 
@@ -338,9 +414,7 @@
       music.play().then(() => {
         isPlaying = true;
         musicBtn.innerText = '🎵';
-      }).catch(err => {
-        console.log("Autoplay dicegah browser, klik tombol musik.");
-      });
+      }).catch(err => console.log("Autoplay dicegah browser"));
     }
 
     function toggleMusic() {
@@ -355,9 +429,9 @@
       }
     }
 
-    // Logika Flipbook Halaman
+    // Logika Flipbook
     let currentPage = 1;
-    const totalPages = 3;
+    const totalPages = 4;
 
     function changePage(direction) {
       document.getElementById(`page-${currentPage}`).classList.remove('active');
@@ -369,7 +443,7 @@
       document.getElementById('page-indicator').innerText = `${currentPage} / ${totalPages}`;
     }
 
-    // Tiup Lilin
+    // Tiup Lilin & Surat
     function blowCandle() {
       const flame = document.getElementById('flame');
       if (!flame.classList.contains('off')) {
@@ -377,6 +451,9 @@
         alert('🎂 Selamat! Lilinnya berhasil ditiup. Make a wish! ✨');
       }
     }
+
+    function openLetter() { document.getElementById('letter-modal').style.display = 'flex'; }
+    function closeLetter() { document.getElementById('letter-modal').style.display = 'none'; }
   </script>
 </body>
 </html>
